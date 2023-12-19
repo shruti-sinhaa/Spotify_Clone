@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+  padding: 0;
+  margin: 0;
+}
+body {
+  background-color: #121212;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 196px;
+  background-color: #000000;
+  padding: 24px;
+}
+.sidebar .logo img {
+  width: 130px;
+}
+.sidebar .navigation ul {
+  list-style: none;
+  margin-top: 20px;
+}
+.sidebar .navigation ul li {
+  padding: 10px 0px;
+}
+.sidebar .navigation ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 13px;
+}
+.sidebar .navigation ul li a:hover,
+.sidebar .navigation ul li a:active,
+.sidebar .navigation ul li a:focus {
+  color: #ffffff;
+}
+.sidebar .navigation ul li a:hover .fa,
+.sidebar .navigation ul li a:active .fa,
+.sidebar .navigation ul li a:focus .fa {
+  color: #b3b3b3;
+}
+.sidebar .navigation ul li .fa {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.sidebar .navigation ul li a:hover .fa:hover,
+.sidebar .navigation ul li a:hover .fa:active,
+.sidebar .navigation ul li a:hover .fa:focus {
+  color: #ffffff;
+}
+.sidebar .policies {
+  position: absolute;
+  bottom: 100px;
+}
+.sidebar .policies ul {
+  list-style: none;
+}
+.sidebar .policies ul li {
+  padding-bottom: 5px;
+}
+.sidebar .policies ul li a {
+  color: #b3b3b3;
+  font-weight: 500;
+  text-decoration: none;
+  font-size: 10px;
+}
+.sidebar .policies ul li a:hover,
+.sidebar .policies ul li a:active,
+.sidebar .policies ul li a:focus {
+  text-decoration: underline;
+}
+
+.main-container {
+  margin-left: 245px;
+  margin-bottom: 100px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #101010;
+  padding: 14px 30px;
+}
+.topbar .prev-next-buttons button {
+  color: #7a7a7a;
+  cursor: not-allowed;
+  width: 34px;
+  height: 34px;
+  border-radius: 100%;
+  font-size: 18px;
+  border: 0px;
+  background-color: #090909;
+  margin-right: 10px;
+}
+.topbar .navbar {
+  display: flex;
+  align-items: center;
+}
+.topbar .navbar ul {
+  list-style: none;
+}
+.topbar .navbar ul li {
+  display: inline-block;
+  margin: 0px 8px;
+  width: 70px;
+}
+.topbar .navbar ul li a {
+  color: #b3b3b3;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+.topbar .navbar ul li a:hover,
+.topbar .navbar ul li a:active,
+.topbar .navbar ul li a:focus {
+  color: #ffffff;
+  font-size: 15px;
+}
+.topbar .navbar ul li.divider {
+  color: #ffffff;
+  font-size: 26px;
+  margin: 0px 20px;
+  width: auto;
+}
+.topbar .navbar button {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 14px 30px;
+  border: 0px;
+  border-radius: 40px;
+  cursor: pointer;
+  margin-left: 20px;
+}
+.topbar .navbar button:hover,
+.topbar .navbar button:active,
+.topbar .navbar button:focus {
+  background-color: #f2f2f2;
+}
+.spotify-playlists {
+  padding: 20px 40px;
+}
+.spotify-playlists h2 {
+  color: #ffffff;
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+.spotify-playlists .list {
+  display: flex;
+  gap: 20px;
+  overflow: hidden;
+}
+.spotify-playlists .list .item {
+  min-width: 140px;
+  width: 160px;
+  padding: 15px;
+  background-color: #181818;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all ease 0.4s;
+}
+.spotify-playlists .list .item:hover {
+  background-color: #252525;
+}
+.spotify-playlists .list .item img {
+  width: 100%;
+  border-radius: 6px;
+  margin-bottom: 10px;
+}
+.spotify-playlists .list .item .play {
+  position: relative;
+}
+.spotify-playlists .list .item .play .fa {
+  position: absolute;
+  right: 10px;
+  top: -60px;
+  padding: 18px;
+  background-color: #1db954;
+  border-radius: 100%;
+  opacity: 0;
+  transition: all ease 0.4s;
+}
+.spotify-playlists .list .item:hover .play .fa {
+  opacity: 1;
+  transform: translateY(-20px);
+}
+.spotify-playlists .list .item h4 {
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.spotify-playlists .list .item p {
+  color: #989898;
+  font-size: 12px;
+  line-height: 10px;
+  font-weight: 600;
+}
+.spotify-playlists hr {
+  margin: 70px 0px 0px;
+  border-color: #636363;
+}
+
+.preview {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to right, #ae2896, #509bf5);
+  padding: 15px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+.preview h6 {
+  color: #ffffff;
+  text-transform: uppercase;
+  font-weight: 400;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+.preview p {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 500;
+}
+.preview button {
+  background-color: #ffffff;
+  color: #000000;
+  font-size: 16px;
+  font-weight: bold;
+  padding: 14px 30px;
+  border: 0px;
+  border-radius: 40px;
+  cursor: pointer;
+}
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+      <div class="logo">
+        <a href="#">
+          <img src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_CMYK_Green.png" alt="Logo" />
+        </a>
+      </div>
+
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="fa fa-home"></span>
+              <span>Home</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="fa fa-search"></span>
+              <span>Search</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="fa fas fa-book"></span>
+              <span>Your Library</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="navigation">
+        <ul>
+          <li>
+            <a href="#">
+              <span class="fa fas fa-plus-square"></span>
+              <span>Create Playlist</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <span class="fa fas fa-heart"></span>
+              <span>Liked Songs</span>
+            </a>
+          </li>
+          
+        </ul>
+      </div>
+
+      <div class="policies">
+        <ul>
+          <li>
+            <a href="#">Cookies</a>
+          </li>
+          <li>
+            <a href="#">Privacy</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-container">
+      <div class="topbar">
+        <div class="prev-next-buttons">
+          <button type="button" class="fa fas fa-chevron-left"></button>
+          <button type="button" class="fa fas fa-chevron-right"></button>
+        </div>
+
+        <div class="navbar">
+          <ul>
+            <li>
+              <a href="#">Premium</a>
+            </li>
+            <li>
+              <a href="#">Support</a>
+            </li>
+            <li>
+              <a href="#">Download</a>
+            </li>
+            <li class="divider">|</li>
+            <li>
+              <a href="#">Sign Up</a>
+            </li>
+          </ul>
+          <button type="button">Log In</button>
+        </div>
+      </div>
+
+      <div class="spotify-playlists">
+        <h2>Your Favorite Artist</h2>
+
+        <div class="list">
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67616100005174214f3cf1cbe7139c1e26ffbb" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>The Weeknd </h4>
+            <p>Artist</p>
+          </div>
+
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67616100005174437b9e2a82505b3d93ff1022" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Kendric Lamar</h4>
+            <p>artist.</p>
+          </div>
+
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67616d00001e02ddeb26b576ba7fc6fb59fa06" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Metro Boomin</h4>
+            <p>artist</p>
+          </div>
+
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67616d00001e023b2df9103b8b1bad69ec4aa9" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Drake</h4>
+            <p>artist</p>
+          </div>
+
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67616d00001e02072e9faef2ef7b6db63834a3" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Travis Scott</h4>
+            <p>artist</p>
+          </div>
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67616d0000b2736ca5c90113b30c3c43ffb8f4" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Eminem</h4>
+            <p>artist</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="spotify-playlists">
+        <h2>Uniquely Yours</h2>
+        <div class="list">
+          <div class="item">
+            <img src="https://feeds.abplive.com/onecms/images/uploaded-images/2023/11/30/ac313b095b29c0dcdecdaee22839467d1701323798755402_original.jpg?impolicy=abp_cdn&imwidth=650" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Your 2023 Wrapped</h4>
+            <p></p>
+          </div>
+
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67706c0000da849046697cb099fd4f6df5ab30" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Top Songs</h4>
+            <p></p>
+          </div>
+
+          <div class="item">
+            <img src="https://daily-mix.scdn.co/covers/on_repeat/PZN_On_Repeat2_DEFAULT-en.jpg" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>On Repeat</h4>
+            <p>songs you love right now</p>
+          </div>
+          
+          <div class="item">
+            <img src="https://daily-mix.scdn.co/covers/time-capsule/time-capsule-blue_DEFAULT-en.jpg" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Time Capsule</h4>
+            <p>we made you a personalised playlist with song to take you back in time</p>
+          </div>
+
+          <div class="item">
+            <img src="https://daily-mix.scdn.co/covers/backtracks/PZN_Repeat_Rewind2_DEFAULT-en.jpg" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Repeat Rewind</h4>
+            <p>your past favorite</p>
+          </div>
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67706c0000da8470d229cb865e8d81cdce0889" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Liked Songs</h4>
+            <p>collection</p>
+          </div>
+          </div>
+          
+      <div class="spotify-playlists">
+        <h2>Recently Played</h2>
+        <div class="list">
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67616d00001e02a048415db06a5b6fa7ec4e1a" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Ordinary Life</h4>
+            <p>The Weeknd</p>
+          </div>
+
+          <div class="item">
+            <img src="https://www.nme.com/wp-content/uploads/2017/02/drakeweeknd.png" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Reminder</h4>
+            <p>The Weeknd</p>
+          </div>
+
+          <div class="item">
+            <img src="https://upload.wikimedia.org/wikipedia/en/4/4b/KendrickLamarSwimmingPools.jpg" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Swimming Pool</h4>
+            <p>Kendric Lamar</p>
+          </div>
+
+          <div class="item">
+            <img src="https://i.scdn.co/image/ab67616d00001e02c4fee55d7b51479627c31f89" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Creepin'</h4>
+            <p>Metro Boomin,The Weeknd,21 Savage</p>
+          </div>
+
+          <div class="item">
+            <img src="https://upload.wikimedia.org/wikipedia/en/2/23/Travis_Scott_-_Utopia.png" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>MY EYE</h4>
+            <p>Travis Scott</p>
+          </div>
+
+               <div class="item">
+            <img src="https://i.scdn.co/image/ab67616d0000b2738b52c6b9bc4e43d873869699" />
+            <div class="play">
+              <span class="fa fa-play"></span>
+            </div>
+            <h4>Humble</h4>
+            <p>Kendric Lamar</p>
+          </div>
+          </div>
+        </div>
+        </div>
+        <hr>
+      </div>
+
+      <div class="preview">
+        <div class="text">
+          <h6>Preview of Spotify</h6>
+          <p>Sign up to get unlimited songs and podcasts with occasional ads. No credit card needed.</p>
+        </div>
+        <div class="button">
+          <button type="button">Sign up free</button>
+        </div>
+      </div>
+    </div>
+
+    <script
+      src="https://kit.fontawesome.com/23cecef777.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
